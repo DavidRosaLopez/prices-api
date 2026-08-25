@@ -107,3 +107,8 @@ La suite de tests del controlador valida estos casos:
 - Test 12: Petición que no encuentra resultados.
 
 La suite se ejecuta con el perfil `test`.
+
+## Documentación
+
+- [Swagger UI](http://localhost:8080/swagger-ui.html)
+- [OpenAPI JSON](http://localhost:8080/v3/api-docs)
