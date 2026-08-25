@@ -1,7 +1,6 @@
 package com.example.pricesapi.service;
 
 import com.example.pricesapi.dto.response.RetrievePriceResponse;
-import com.example.pricesapi.domain.PriceEntity;
 import com.example.pricesapi.mapper.PriceMapper;
 import com.example.pricesapi.repository.PriceRepository;
 import java.time.LocalDateTime;
@@ -30,12 +29,16 @@ public class PriceService {
    */
   public RetrievePriceResponse retrievePrice(
       Long brandId, Long productId, LocalDateTime applicationDate) {
-    PriceEntity price =
-        priceRepository
-            .findApplicablePrices(brandId, productId, applicationDate, PageRequest.of(0, 1))
-            .stream()
-            .findFirst()
-            .orElseThrow();
-    return new RetrievePriceResponse(priceMapper.toPrice(price));
+    // Llamada al metodo del repositorio para recuperar el precio aplicable
+    return priceRepository
+        .findApplicablePrice(brandId, productId, applicationDate, PageRequest.of(0, 1))
+        .stream()
+        .findFirst()
+        // Llamada al metodo del mapper para convertir la entidad a DTO
+        .map(priceMapper::toPrice)
+        // Envoltura del resultado en el objeto wrapper RetrievePriceResponse
+        .map(RetrievePriceResponse::new)
+        // Manejo del caso en que no se encuentra ningun precio
+        .orElseThrow();
   }
 }
