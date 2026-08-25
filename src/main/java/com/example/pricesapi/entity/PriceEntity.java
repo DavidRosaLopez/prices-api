@@ -1,4 +1,4 @@
-package com.example.pricesapi.domain;
+package com.example.pricesapi.entity;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;

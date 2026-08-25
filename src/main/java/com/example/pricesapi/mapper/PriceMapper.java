@@ -1,10 +1,10 @@
 package com.example.pricesapi.mapper;
 
-import com.example.pricesapi.domain.PriceEntity;
 import com.example.pricesapi.dto.common.Amount;
 import com.example.pricesapi.dto.common.Brand;
 import com.example.pricesapi.dto.common.Price;
 import com.example.pricesapi.dto.common.Product;
+import com.example.pricesapi.entity.PriceEntity;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 
