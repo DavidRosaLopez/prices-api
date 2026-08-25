@@ -1,6 +1,6 @@
 # prices-api
 
-API REST para consultar el precio aplicable de un producto en una cadena, dado un momento concreto de aplicación.
+API REST para consultar el precio aplicable de un producto en una cadena en una fecha y hora concretas.
 
 ## Resumen
 
