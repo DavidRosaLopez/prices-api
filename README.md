@@ -64,9 +64,9 @@ La entidad principal es `PRICES`, con estos campos:
 ## Reglas de negocio
 
 - Un precio es aplicable si `applicationDate` está dentro del rango `[START_DATE, END_DATE]`.
-- Si hay varias tarifas válidas con la misma `PRIORITY`, se aplica el registro más reciente por `CREATION_DATE`.
-- `CREATION_DATE` es único, así que no puede haber empate real en la recencia.
-- Si no existe precio aplicable, el servicio responde `204 No Content`.
+- Si hay varias tarifas válidas con la misma `PRIORITY`, se obtiene el registro más reciente por `CREATION_DATE`.
+- `CREATION_DATE` es único, así que no puede haber dos registros con la misma fecha de creación.
+- Si no se obtiene ningún resultado de la consulta, el servicio responderá con un código de estado `204 No Content` y un cuerpo vacío.
 
 ## Tests
 
