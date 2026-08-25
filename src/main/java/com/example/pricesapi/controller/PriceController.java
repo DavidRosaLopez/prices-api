@@ -35,7 +35,6 @@ public class PriceController {
    * @param applicationDate the application date and time
    * @param productId the product identifier
    * @param brandId the brand identifier
-   * 
    * @return the response entity
    */
   @Operation(summary = "Retrieve the applicable price for a product, brand and application date")
