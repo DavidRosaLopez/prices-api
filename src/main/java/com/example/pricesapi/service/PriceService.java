@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.example.pricesapi.domain.PriceEntity;
 import com.example.pricesapi.dto.RetrievePriceResponse;
 import com.example.pricesapi.mapper.PriceMapper;
 import com.example.pricesapi.repository.PriceRepository;
