@@ -13,13 +13,11 @@ public interface PriceRepository extends JpaRepository<PriceEntity, Long> {
    *
    * @param brandId the brand identifier.
    * @param productId the product identifier.
-   * @param applicationDate the date and time for which to retrieve the price.
+   * @param startDate the start date.
+   * @param endDate the end date.
    * @return the highest priority price if present.
    */
   Optional<PriceEntity>
       findFirstByBrandIdAndProductIdAndStartDateLessThanEqualAndEndDateGreaterThanEqualOrderByPriorityDescCreationDateDesc(
-          Long brandId,
-          Long productId,
-          LocalDateTime startDate,
-          LocalDateTime endDate);
+          Long brandId, Long productId, LocalDateTime startDate, LocalDateTime endDate);
 }
