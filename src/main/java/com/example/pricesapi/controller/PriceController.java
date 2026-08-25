@@ -19,10 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /** Controller for managing prices. */
-@Tag(
-    name = "Prices",
-    description =
-        "Manages the applicable price for a product and brand at a specific date and time.")
+@Tag(name = "Prices", description = "Manages the prices.")
 @RestController
 @RequestMapping("/api/v1/prices")
 @Validated

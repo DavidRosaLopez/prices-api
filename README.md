@@ -1,10 +1,10 @@
 # prices-api
 
-Microservicio para consultar el precio aplicable de un producto en una cadena, dado un momento concreto de aplicación.
+API REST para consultar el precio aplicable de un producto en una cadena, dado un momento concreto de aplicación.
 
 ## Resumen
 
-La aplicación expone un endpoint REST que recibe como parámetros de consulta:
+La API expone un endpoint REST que recibe como parámetros de consulta:
 
 - Identificador de producto
 - Identificador de cadena
@@ -103,5 +103,6 @@ Tests adicionales de validación de errores:
 - Test 9: Petición con parámetros nulos.
 - Test 10: Petición con parámetros fuera de rango.
 - Test 11: Petición con parámetros con formato inválido.
+- Test 12: Petición que no encuentra resultados.
 
 La suite se ejecuta con el perfil `test`.
