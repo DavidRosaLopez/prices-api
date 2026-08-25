@@ -47,6 +47,7 @@ public class PriceController {
       @Parameter(description = "Product identifier", required = true) @RequestParam Long productId,
       @Parameter(description = "Application date and time", required = true) @RequestParam
           LocalDateTime applicationDate) {
+    // Llamada al metodo del servicio para recuperar el precio aplicable
     return ResponseEntity.ok(priceService.retrievePrice(brandId, productId, applicationDate));
   }
 }
