@@ -12,11 +12,15 @@ import com.example.pricesapi.repository.PriceRepository;
 
 import lombok.RequiredArgsConstructor;
 
+/** Service for managing prices */
 @Service
 @RequiredArgsConstructor
 public class PriceService {
 
+  /** Price repository */
   private final PriceRepository priceRepository;
+  
+  /** Price mapper */
   private final PriceMapper priceMapper;
 
   public Optional<RetrievePriceResponse> retrievePrice(
