@@ -6,12 +6,12 @@ import java.time.LocalDateTime;
 /**
  * Record that represents a price.
  *
- * @param product the product information
- * @param brand the brand information
- * @param priceList the price list identifier
- * @param startDate the start date
- * @param endDate the end date
- * @param amount the amount information
+ * @param product the product information.
+ * @param brand the brand information.
+ * @param priceList the price list identifier.
+ * @param startDate the start date.
+ * @param endDate the end date.
+ * @param amount the amount information.
  */
 public record Price(
     @Schema(description = "Product information") Product product,

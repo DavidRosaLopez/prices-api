@@ -10,12 +10,12 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 
-/** Controller for managing prices */
+/** Controller for managing prices. */
 @SpringBootTest
 @AutoConfigureMockMvc
 class PriceControllerTest {
 
-  /** MockMvc for testing */
+  /** MockMvc for testing. */
   @Autowired private MockMvc mockMvc;
 
   /** Verifies the price at 10:00 on June 14th for product 35455 and brand 1. */

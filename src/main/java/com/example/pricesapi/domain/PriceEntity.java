@@ -16,40 +16,40 @@ import lombok.Data;
 @Data
 public class PriceEntity {
 
-  /** The price identifier */
+  /** The price identifier. */
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
-  /** The brand identifier */
+  /** The brand identifier. */
   @Column(name = "BRAND_ID", nullable = false)
   private Long brandId;
 
-  /** The product identifier */
+  /** The product identifier. */
   @Column(name = "PRODUCT_ID", nullable = false)
   private Long productId;
 
-  /** The price list identifier */
+  /** The price list identifier. */
   @Column(name = "PRICE_LIST", nullable = false)
   private Integer priceList;
 
-  /** The start date */
+  /** The start date. */
   @Column(name = "START_DATE", nullable = false)
   private LocalDateTime startDate;
 
-  /** The end date */
+  /** The end date. */
   @Column(name = "END_DATE", nullable = false)
   private LocalDateTime endDate;
 
-  /** The priority */
+  /** The priority. */
   @Column(name = "PRIORITY", nullable = false)
   private Integer priority;
 
-  /** The price */
+  /** The price. */
   @Column(name = "PRICE", nullable = false, precision = 10, scale = 2)
   private BigDecimal price;
 
-  /** The currency */
+  /** The currency. */
   @Column(name = "CURR", nullable = false, length = 3)
   private String currency;
 }

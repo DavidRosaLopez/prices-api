@@ -9,15 +9,15 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-/** Service for managing prices */
+/** Service for managing prices. */
 @Service
 @RequiredArgsConstructor
 public class PriceService {
 
-  /** Price repository */
+  /** Price repository. */
   private final PriceRepository priceRepository;
 
-  /** Price mapper */
+  /** Price mapper. */
   private final PriceMapper priceMapper;
 
   /**

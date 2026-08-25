@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-/** Controller for managing prices */
+/** Controller for managing prices. */
 @Tag(name = "Prices API", description = "API for retrieving prices")
 @RestController
 @Validated
@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 public class PriceController {
 
-  /** Service for managing prices */
+  /** Service for managing prices. */
   private final PriceService priceService;
 
   /**

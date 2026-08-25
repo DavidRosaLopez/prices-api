@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
-/** Repository for managing prices */
+/** Repository for managing prices. */
 public interface PriceRepository extends JpaRepository<PriceEntity, Long> {
 
   /**
