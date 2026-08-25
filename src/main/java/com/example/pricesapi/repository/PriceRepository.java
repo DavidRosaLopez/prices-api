@@ -2,7 +2,7 @@ package com.example.pricesapi.repository;
 
 import com.example.pricesapi.domain.PriceEntity;
 import java.time.LocalDateTime;
-import java.util.List;
+import java.util.Optional;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -17,7 +17,7 @@ public interface PriceRepository extends JpaRepository<PriceEntity, Long> {
    * @param brandId the brand identifier.
    * @param productId the product identifier.
    * @param applicationDate the date and time for which to retrieve the price.
-   * @return the most specific price ordered by highest priority first.
+   * @return the highest priority price if present.
    */
   @Query(
       """
@@ -28,7 +28,7 @@ public interface PriceRepository extends JpaRepository<PriceEntity, Long> {
                 AND :applicationDate BETWEEN p.startDate AND p.endDate
               ORDER BY p.priority DESC
               """)
-  List<PriceEntity> findApplicablePrice(
+  Optional<PriceEntity> findApplicablePrice(
       @Param("brandId") Long brandId,
       @Param("productId") Long productId,
       @Param("applicationDate") LocalDateTime applicationDate,

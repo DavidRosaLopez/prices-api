@@ -25,20 +25,18 @@ public class PriceService {
    * @param brandId the brand identifier.
    * @param productId the product identifier.
    * @param applicationDate the date and time for which to retrieve the price.
-   * @return the response DTO with the applicable price information.
+   * @return the response with the applicable price information.
    */
   public RetrievePriceResponse retrievePrice(
       Long brandId, Long productId, LocalDateTime applicationDate) {
     // Llamada al metodo del repositorio para recuperar el precio aplicable
     return priceRepository
         .findApplicablePrice(brandId, productId, applicationDate, PageRequest.of(0, 1))
-        .stream()
-        .findFirst()
-        // Llamada al metodo del mapper para convertir la entidad a DTO
+        // Mapeo para convertir la entidad a DTO
         .map(priceMapper::toPrice)
         // Envoltura del resultado en el objeto wrapper RetrievePriceResponse
         .map(RetrievePriceResponse::new)
-        // Manejo del caso en que no se encuentra ningun precio
+        // Manejo del caso en que no se encuentre ningun resultado
         .orElseThrow();
   }
 }
