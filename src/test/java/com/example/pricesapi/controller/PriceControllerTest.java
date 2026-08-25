@@ -49,18 +49,18 @@ class PriceControllerTest {
   }
 
   /** Performs the request and verifies the returned price payload. */
-  private void assertPrice(String applicationDate, int expectedPriceList, double expectedPrice)
+  private void assertPrice(String date, int expectedPriceList, double expectedPrice)
       throws Exception {
     mockMvc
         .perform(
-            get("/api/v1/prices/retrievePrices")
-                .param("applicationDate", applicationDate)
+            get("/api/v1/prices/retrievePrice")
+                .param("applicationDate", date)
                 .param("productId", "35455")
                 .param("brandId", "1"))
         .andExpect(status().isOk())
-        .andExpect(jsonPath("$.productId").value(35455))
-        .andExpect(jsonPath("$.brandId").value(1))
-        .andExpect(jsonPath("$.priceList").value(expectedPriceList))
-        .andExpect(jsonPath("$.price").value(expectedPrice));
+        .andExpect(jsonPath("$.price.productId").value(35455))
+        .andExpect(jsonPath("$.price.brandId").value(1))
+        .andExpect(jsonPath("$.price.priceList").value(expectedPriceList))
+        .andExpect(jsonPath("$.price.price").value(expectedPrice));
   }
 }

@@ -42,13 +42,12 @@ public class PriceController {
   @ApiResponse(responseCode = "500", description = "Internal server error")
   @ApiResponse(responseCode = "503", description = "Service unavailable")
   @ApiResponse(responseCode = "504", description = "Gateway timeout")
-  @GetMapping("/retrievePrices")
-  public ResponseEntity<RetrievePriceResponse> retrievePrices(
+  @GetMapping("/retrievePrice")
+  public ResponseEntity<RetrievePriceResponse> retrievePrice(
       @Parameter(description = "Application date and time", required = true) @RequestParam
           LocalDateTime applicationDate,
       @Parameter(description = "Product identifier", required = true) @RequestParam Long productId,
       @Parameter(description = "Brand identifier", required = true) @RequestParam Long brandId) {
-
     return priceService
         .retrievePrice(applicationDate, productId, brandId)
         .map(ResponseEntity::ok)
