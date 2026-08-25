@@ -1,10 +1,11 @@
 package com.example.pricesapi.controller;
 
+import com.example.pricesapi.docs.ApiErrorResponses;
+import com.example.pricesapi.docs.ApiSuccessResponse;
 import com.example.pricesapi.dto.response.RetrievePriceResponse;
 import com.example.pricesapi.service.PriceService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
-import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import java.time.LocalDateTime;
 import lombok.RequiredArgsConstructor;
@@ -33,14 +34,8 @@ public class PriceController {
    * @return the response entity.
    */
   @Operation(summary = "Retrieve the applicable price for a product, brand and application date")
-  @ApiResponse(responseCode = "200", description = "Success")
-  @ApiResponse(responseCode = "400", description = "Bad request")
-  @ApiResponse(responseCode = "401", description = "Unauthorized")
-  @ApiResponse(responseCode = "403", description = "Forbidden")
-  @ApiResponse(responseCode = "404", description = "Not found")
-  @ApiResponse(responseCode = "500", description = "Internal server error")
-  @ApiResponse(responseCode = "503", description = "Service unavailable")
-  @ApiResponse(responseCode = "504", description = "Gateway timeout")
+  @ApiSuccessResponse
+  @ApiErrorResponses
   @GetMapping("/retrievePrice")
   public ResponseEntity<RetrievePriceResponse> retrievePrice(
       @Parameter(description = "Brand identifier", required = true) @RequestParam Long brandId,

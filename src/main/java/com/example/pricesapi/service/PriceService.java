@@ -32,6 +32,8 @@ public class PriceService {
     // Llamada al metodo del repositorio para recuperar el precio aplicable
     return priceRepository
         .findApplicablePrice(brandId, productId, applicationDate, PageRequest.of(0, 1))
+        .stream()
+        .findFirst()
         // Mapeo para convertir la entidad a DTO
         .map(priceMapper::toPrice)
         // Envoltura del resultado en el objeto wrapper RetrievePriceResponse
