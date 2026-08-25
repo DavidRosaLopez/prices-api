@@ -47,7 +47,7 @@ GET /api/v1/prices/retrievePrice?applicationDate=2020-06-14T16:00:00&productId=3
 
 ## Datos de ejemplo
 
-La base de datos H2 se inicializa automáticamente con los 4 registros del enunciado en `src/main/resources/data.sql`.
+La base de datos H2 se inicializa automáticamente con los 4 registros del enunciado, más 1 registro adicional para validar el desempate por `CREATION_DATE`, en `src/main/resources/data.sql`.
 
 La entidad principal es `PRICES`, con estos campos:
 
