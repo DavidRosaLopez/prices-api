@@ -125,7 +125,7 @@ class PriceControllerTest {
   }
 
   /** Performs the request and verifies the returned price payload. */
-  private void assertPrice(String applicationDate, int productId, int brandId, int expectedPriceList, double expectedPrice)
+  private void assertPrice(String applicationDate, int expectedPriceList, double expectedPrice)
       throws Exception {
     mockMvc
         .perform(
