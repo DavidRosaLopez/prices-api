@@ -21,7 +21,13 @@ import org.springframework.context.annotation.Configuration;
                 amount and currency information.
                 """,
             version = "v1",
-            license =
-                @License(name = "Apache 2.0", url = "https://www.apache.org/licenses/LICENSE-2.0"),
-            contact = @Contact(name = "David", email = "davorsevilla@hotmail.com")))
+            license = @License(
+                name = "Apache 2.0",
+                url = "https://www.apache.org/licenses/LICENSE-2.0"
+            ),
+            contact = @Contact(
+                name = "David",
+                email = "davorsevilla@hotmail.com"
+            )
+        ))
 public class OpenApiConfig {}
