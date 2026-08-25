@@ -37,7 +37,7 @@ public class PriceController {
    * @param brandId the brand identifier.
    * @return the response entity.
    */
-  @Operation(summary = "Retrieve the applicable price for a product, brand and application date")
+  @Operation(summary = "Retrieve the applicable price for a product, brand and application date.")
   @ApiSuccessResponse
   @ApiErrorResponses
   @GetMapping("/retrievePrice")
