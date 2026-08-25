@@ -1,4 +1,4 @@
-package com.example.pricesapi.docs.openapi;
+package com.example.pricesapi.swagger;
 
 import com.example.pricesapi.dto.response.RetrievePriceResponse;
 import io.swagger.v3.oas.annotations.media.Content;

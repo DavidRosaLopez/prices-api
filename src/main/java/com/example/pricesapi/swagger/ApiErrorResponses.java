@@ -1,4 +1,4 @@
-package com.example.pricesapi.docs.openapi;
+package com.example.pricesapi.swagger;
 
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.ExampleObject;
@@ -19,14 +19,16 @@ import org.springframework.http.ProblemDetail;
     content =
         @Content(
             schema = @Schema(implementation = ProblemDetail.class),
-            examples = @ExampleObject(name = "Bad request", value = SwaggerExamples.BAD_REQUEST_ERROR)))
+            examples =
+                @ExampleObject(name = "Bad request", value = SwaggerExamples.BAD_REQUEST_ERROR)))
 @ApiResponse(
     responseCode = "401",
     description = "Unauthorized",
     content =
         @Content(
             schema = @Schema(implementation = ProblemDetail.class),
-            examples = @ExampleObject(name = "Unauthorized", value = SwaggerExamples.UNAUTHORIZED_ERROR)))
+            examples =
+                @ExampleObject(name = "Unauthorized", value = SwaggerExamples.UNAUTHORIZED_ERROR)))
 @ApiResponse(
     responseCode = "403",
     description = "Forbidden",
@@ -69,5 +71,6 @@ import org.springframework.http.ProblemDetail;
             schema = @Schema(implementation = ProblemDetail.class),
             examples =
                 @ExampleObject(
-                    name = "Gateway timeout", value = SwaggerExamples.GATEWAY_TIMEOUT_ERROR)))
+                    name = "Gateway timeout",
+                    value = SwaggerExamples.GATEWAY_TIMEOUT_ERROR)))
 public @interface ApiErrorResponses {}

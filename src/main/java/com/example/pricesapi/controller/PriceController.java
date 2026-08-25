@@ -1,9 +1,9 @@
 package com.example.pricesapi.controller;
 
-import com.example.pricesapi.docs.openapi.ApiErrorResponses;
-import com.example.pricesapi.docs.openapi.ApiSuccessResponse;
 import com.example.pricesapi.dto.response.RetrievePriceResponse;
 import com.example.pricesapi.service.PriceService;
+import com.example.pricesapi.swagger.ApiErrorResponses;
+import com.example.pricesapi.swagger.ApiSuccessResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;

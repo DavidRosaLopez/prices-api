@@ -1,4 +1,4 @@
-package com.example.pricesapi.docs.openapi;
+package com.example.pricesapi.swagger;
 
 import lombok.experimental.UtilityClass;
 
