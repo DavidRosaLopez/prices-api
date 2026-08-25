@@ -16,5 +16,5 @@ import java.lang.annotation.Target;
     responseCode = "200",
     description = "Success",
     content = @Content(schema = @Schema(implementation = RetrievePriceResponse.class)))
-@ApiResponse(responseCode = "204", description = "No content")
+@ApiResponse(responseCode = "204", description = "No content", content = @Content)
 public @interface ApiSuccessResponse {}
