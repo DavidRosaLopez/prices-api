@@ -20,14 +20,14 @@ Y devuelve el precio aplicable con la siguiente información:
 
 ## Stack
 
-- Java 21
-- Spring Boot 3.3
+- Java 25
+- Spring Boot 4.1
 - Spring Web
 - Spring Data JPA
 - Validation
 - H2 en memoria
 - MapStruct
-- Springdoc OpenAPI
+- Springdoc OpenAPI 3
 
 ## Perfiles
 
