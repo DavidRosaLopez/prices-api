@@ -104,7 +104,7 @@ La suite de tests del controlador valida estos casos:
 - Test 9: Petición con parámetros nulos.
 - Test 10: Petición con parámetros fuera de rango.
 - Test 11: Petición con parámetros con formato inválido.
-- Test 12: Petición que no encuentra resultados.
+- Test 12: Petición sin resultados.
 
 La suite se ejecuta con el perfil `test`.
 
