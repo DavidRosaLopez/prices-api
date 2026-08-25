@@ -19,13 +19,20 @@ public class PriceService {
   /** Price mapper */
   private final PriceMapper priceMapper;
 
+  /**
+   * Retrieves a price for a specific brand and product at a given date and time.
+   *
+   * @param applicationDate the date and time for which to retrieve the price.
+   * @param productId the product identifier.
+   * @param brandId the brand identifier.
+   * @return an optional containing the final response DTO with the applicable price information
+   */
   public Optional<RetrievePriceResponse> retrievePrice(
       LocalDateTime applicationDate, Long productId, Long brandId) {
-
-    return Optional.ofNullable(
-            priceRepository
-                .findFirstByBrandIdAndProductIdAndStartDateLessThanEqualAndEndDateGreaterThanEqualOrderByPriorityDescPriceListDesc(
-                    brandId, productId, applicationDate, applicationDate))
+    // Llamada al repositorio para ejecutar la consulta a la base de datos, obtener el
+    // precio aplicable segun los parametros de entrada y mapearlo a la respuesta final de la API
+    return priceRepository
+        .findApplicablePrice(brandId, productId, applicationDate)
         .map(priceMapper::toPrice)
         .map(RetrievePriceResponse::new);
   }
