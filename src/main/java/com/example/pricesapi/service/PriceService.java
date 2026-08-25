@@ -31,10 +31,13 @@ public class PriceService {
   public Optional<RetrievePriceResponse> retrievePrice(
       Long brandId, Long productId, LocalDateTime applicationDate) {
     return priceRepository
+        // Llamada al metodo del repositorio para recuperar el precio aplicable.
         .findApplicablePrice(brandId, productId, applicationDate, PageRequest.of(0, 1))
         .stream()
         .findFirst()
+        // Mapeo para convertir la entidad a DTO.
         .map(priceMapper::toPrice)
+        // Envoltura del resultado en el objeto wrapper RetrievePriceResponse.
         .map(RetrievePriceResponse::new);
   }
 }
