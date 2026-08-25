@@ -1,16 +1,16 @@
 # prices-api
 
-Servicio Spring Boot para consultar el precio aplicable de un producto en una cadena, dado un momento concreto de aplicación.
+Microservicio para consultar el precio aplicable de un producto en una cadena, dado un momento concreto de aplicación.
 
 ## Resumen
 
-La aplicación expone un endpoint REST que recibe:
+La aplicación expone un endpoint REST que recibe como parámetros de consulta:
 
 - Identificador de producto
 - Identificador de cadena
 - Fecha y hora de aplicación
 
-Y devuelve el precio aplicable con:
+Y devuelve el precio aplicable con la siguiente información:
 
 - Identificador de producto
 - Identificador de cadena
