@@ -61,7 +61,7 @@ GET /api/v1/prices/retrievePrice?brandId=1&productId=35455&applicationDate=2020-
 
 ## Datos de ejemplo
 
-La base de datos H2 se inicializa automáticamente con los 4 registros del enunciado, más 1 registro adicional para validar el desempate por `CREATION_DATE`, en `src/main/resources/data.sql`.
+La base de datos H2 se inicializa automáticamente con los 4 registros del enunciado, más 1 registro adicional para validar el desempate por fecha de creación (`CREATION_DATE`), en `src/main/resources/data.sql`.
 
 La entidad principal es `PRICES`, con estos campos:
 
@@ -73,7 +73,7 @@ La entidad principal es `PRICES`, con estos campos:
 - `PRIORITY`
 - `PRICE`
 - `CURR`
-- `CREATION_DATE`
+- `CREATION_DATE` (campo añadido)
 
 ## Reglas de negocio
 
@@ -85,7 +85,7 @@ La entidad principal es `PRICES`, con estos campos:
 
 La suite de tests del controlador valida estos casos:
 
-Casos del enunciado:
+### Tests del enunciado
 
 - Test 1: Petición a las 10:00 del día 14 del producto 35455 para la brand 1 (ZARA).
 - Test 2: Petición a las 16:00 del día 14 del producto 35455 para la brand 1 (ZARA).
@@ -93,11 +93,11 @@ Casos del enunciado:
 - Test 4: Petición a las 10:00 del día 15 del producto 35455 para la brand 1 (ZARA).
 - Test 5: Petición a las 21:00 del día 16 del producto 35455 para la brand 1 (ZARA).
 
-Test adicional de regla de negocio:
+### Test adicional
 
-- Test 6: Verifica que, si dos tarifas tienen la misma prioridad, gana la más reciente por `CREATION_DATE`.
+- Test 6: Verifica que, si dos tarifas tienen la misma prioridad, se obtiene la más reciente por fecha de creación (`CREATION_DATE`).
 
-Tests adicionales de validación de errores:
+### Tests adicionales de validación de errores
 
 - Test 7: Petición con parámetros inválidos.
 - Test 8: Petición sin parámetros.
