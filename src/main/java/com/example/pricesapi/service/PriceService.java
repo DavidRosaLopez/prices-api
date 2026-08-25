@@ -25,7 +25,7 @@ public class PriceService {
    * @param applicationDate the date and time for which to retrieve the price.
    * @param productId the product identifier.
    * @param brandId the brand identifier.
-   * @return an optional containing the final response DTO with the applicable price information.
+   * @return the response DTO with the applicable price information.
    */
   public Optional<RetrievePriceResponse> retrievePrice(
       LocalDateTime applicationDate, Long productId, Long brandId) {
