@@ -2,6 +2,7 @@ package com.example.pricesapi.exception;
 
 import jakarta.validation.ConstraintViolationException;
 import java.util.NoSuchElementException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MissingServletRequestParameterException;
@@ -21,21 +22,23 @@ public class ApiExceptionHandler {
     IllegalArgumentException.class
   })
   public ResponseEntity<ProblemDetail> handleBadRequest() {
-    ProblemDetail problemDetail = ApiError.BAD_REQUEST.toProblemDetail();
-    return ResponseEntity.status(problemDetail.getStatus()).body(problemDetail);
+    return toResponse(HttpStatus.BAD_REQUEST, "Invalid request parameters");
   }
 
   /** Handle not found exceptions. */
   @ExceptionHandler(NoSuchElementException.class)
   public ResponseEntity<ProblemDetail> handleNotFound() {
-    ProblemDetail problemDetail = ApiError.NOT_FOUND.toProblemDetail();
-    return ResponseEntity.status(problemDetail.getStatus()).body(problemDetail);
+    return toResponse(HttpStatus.NOT_FOUND, "Not found");
   }
 
   /** Handle generic exceptions. */
   @ExceptionHandler(Exception.class)
   public ResponseEntity<ProblemDetail> handleGeneric() {
-    ProblemDetail problemDetail = ApiError.INTERNAL_SERVER_ERROR.toProblemDetail();
-    return ResponseEntity.status(problemDetail.getStatus()).body(problemDetail);
+    return toResponse(HttpStatus.INTERNAL_SERVER_ERROR, "Internal Server Error");
+  }
+
+  /** Convert an API error to a response entity. */
+  private ResponseEntity<ProblemDetail> toResponse(HttpStatus status, String detail) {
+    return ResponseEntity.status(status).body(ProblemDetail.forStatusAndDetail(status, detail));
   }
 }
