@@ -18,25 +18,25 @@ class PriceControllerTest {
   /** MockMvc for testing. */
   @Autowired private MockMvc mockMvc;
 
-  /** Verifies the price at 10:00 on June 14th for product 35455 and brand 1. */
+  /** Test 1: Verifies the price at 10:00 on June 14th for product 35455 and brand 1. */
   @Test
   void test1() throws Exception {
     assertPrice("2020-06-14T10:00:00", 1, 35.50);
   }
 
-  /** Verifies the price at 16:00 on June 14th for product 35455 and brand 1. */
+  /** Test 2: Verifies the price at 16:00 on June 14th for product 35455 and brand 1. */
   @Test
   void test2() throws Exception {
     assertPrice("2020-06-14T16:00:00", 2, 25.45);
   }
 
-  /** Verifies the price at 21:00 on June 14th for product 35455 and brand 1. */
+  /** Test 3: Verifies the price at 21:00 on June 14th for product 35455 and brand 1. */
   @Test
   void test3() throws Exception {
     assertPrice("2020-06-14T21:00:00", 1, 35.50);
   }
 
-  /** Verifies the price at 10:00 on June 15th for product 35455 and brand 1. */
+  /** Test 4: Verifies the price at 10:00 on June 15th for product 35455 and brand 1. */
   @Test
   void test4() throws Exception {
     assertPrice("2020-06-15T10:00:00", 3, 30.50);
@@ -48,13 +48,13 @@ class PriceControllerTest {
     assertPrice("2020-06-16T21:00:00", 4, 38.95);
   }
 
-  /** Verifies that if two prices have the same priority, the most recent one wins. */
+  /** Test 6: Verifies that if two prices have the same priority, the most recent one wins. */
   @Test
   void test6() throws Exception {
     assertPrice("2020-06-15T10:40:00", 5, 31.00);
   }
 
-  /** Verifies the service rejects malformed parameters. */
+  /** Test 7: Verifies the service rejects malformed parameters. */
   @Test
   void test7() throws Exception {
     mockMvc
@@ -66,13 +66,13 @@ class PriceControllerTest {
         .andExpect(status().isBadRequest());
   }
 
-  /** Verifies the service rejects requests without parameters. */
+  /** Test 8: Verifies the service rejects requests without parameters. */
   @Test
   void test8() throws Exception {
     mockMvc.perform(get("/api/v1/prices/retrievePrice")).andExpect(status().isBadRequest());
   }
 
-  /** Verifies the service rejects null-like parameters. */
+  /** Test 9: Verifies the service rejects null-like parameters. */
   @Test
   void test9() throws Exception {
     mockMvc
@@ -84,7 +84,7 @@ class PriceControllerTest {
         .andExpect(status().isBadRequest());
   }
 
-  /** Verifies the service rejects out-of-range parameters. */
+  /** Test 10: Verifies the service rejects out-of-range parameters. */
   @Test
   void test10() throws Exception {
     mockMvc
@@ -96,7 +96,7 @@ class PriceControllerTest {
         .andExpect(status().isBadRequest());
   }
 
-  /** Verifies the service rejects another malformed request. */
+  /** Test 11: Verifies the service rejects another malformed request. */
   @Test
   void test11() throws Exception {
     mockMvc
