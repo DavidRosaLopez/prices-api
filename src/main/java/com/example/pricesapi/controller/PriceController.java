@@ -42,11 +42,11 @@ public class PriceController {
   @ApiErrorResponses
   @GetMapping("/retrievePrice")
   public ResponseEntity<RetrievePriceResponse> retrievePrice(
-      @Parameter(description = "Brand identifier.", required = true)
+      @Parameter(description = "Brand identifier.", example = "1", required = true)
           @RequestParam(name = "brandId")
           @Positive
           Long brandId,
-      @Parameter(description = "Product identifier.", required = true)
+      @Parameter(description = "Product identifier.", example = "35455", required = true)
           @RequestParam(name = "productId")
           @Positive
           Long productId,
