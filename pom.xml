@@ -47,6 +47,12 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- Springdoc OpenAPI -->    
+        <dependency>
+            <groupId>org.springdoc</groupId>
+            <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+        </dependency>
+        
         <!-- H2 Database -->
         <dependency>
             <groupId>com.h2database</groupId>
