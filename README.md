@@ -42,12 +42,12 @@ Y devuelve el precio aplicable con la siguiente información:
 
 - `brandId`: identificador de la cadena
 - `productId`: identificador del producto
-- `applicationDate`: fecha y hora de consulta en formato ISO-8601
+- `applicationDate`: fecha y hora de consulta en formato ISO-8601 sin zona horaria (`2020-06-14T16:00:00`)
 
 ### Ejemplo
 
 ```http
-GET /api/v1/prices/retrievePrice?applicationDate=2020-06-14T16:00:00&productId=35455&brandId=1
+GET /api/v1/prices/retrievePrice?brandId=1&productId=35455&applicationDate=2020-06-14T16:00:00
 ```
 
 ### Contrato de respuesta

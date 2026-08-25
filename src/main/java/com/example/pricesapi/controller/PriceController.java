@@ -42,15 +42,18 @@ public class PriceController {
   @ApiErrorResponses
   @GetMapping("/retrievePrice")
   public ResponseEntity<RetrievePriceResponse> retrievePrice(
-      @Parameter(description = "Brand identifier", required = true)
+      @Parameter(description = "Brand identifier.", required = true)
           @RequestParam(name = "brandId")
           @Positive
           Long brandId,
-      @Parameter(description = "Product identifier", required = true)
+      @Parameter(description = "Product identifier.", required = true)
           @RequestParam(name = "productId")
           @Positive
           Long productId,
-      @Parameter(description = "Application date and time", required = true)
+      @Parameter(
+              description = "Application date and time in ISO-8601 format.",
+              example = "2020-06-14T16:00:00",
+              required = true)
           @RequestParam(name = "applicationDate")
           @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
           LocalDateTime applicationDate) {
