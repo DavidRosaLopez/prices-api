@@ -33,8 +33,8 @@ public class PriceController {
    * @return the response entity
    */
   @Operation(summary = "Retrieve the applicable price for a product, brand and application date")
-  @ApiResponse(responseCode = "200", description = "Price found")
-  @ApiResponse(responseCode = "204", description = "No price found")
+  @ApiResponse(responseCode = "200", description = "Success")
+  @ApiResponse(responseCode = "204", description = "No content")
   @ApiResponse(responseCode = "400", description = "Bad request")
   @ApiResponse(responseCode = "401", description = "Unauthorized")
   @ApiResponse(responseCode = "403", description = "Forbidden")
