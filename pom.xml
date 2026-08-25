@@ -14,7 +14,9 @@
     <artifactId>prices-api</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>prices-api</name>
-    <description>Prices API</description>
+    <description>Microservice that determines the applicable retail price (PVP) and active rate for a given product,
+        brand and application date. It evaluates price priorities and date ranges to resolve the correct tariff.
+    </description>
 
     <properties>
         <java.version>25</java.version>
@@ -59,7 +61,7 @@
             <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
             <version>3.0.3</version>
         </dependency>
-        
+
         <!-- H2 Database -->
         <dependency>
             <groupId>com.h2database</groupId>
