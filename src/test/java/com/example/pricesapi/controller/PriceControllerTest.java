@@ -125,12 +125,12 @@ class PriceControllerTest {
   }
 
   /** Performs the request and verifies the returned price payload. */
-  private void assertPrice(String date, int expectedPriceList, double expectedPrice)
+  private void assertPrice(String applicationDate, int productId, int brandId, int expectedPriceList, double expectedPrice)
       throws Exception {
     mockMvc
         .perform(
             get("/api/v1/prices/retrievePrice")
-                .param("applicationDate", date)
+                .param("applicationDate", applicationDate)
                 .param("productId", "35455")
                 .param("brandId", "1"))
         .andExpect(status().isOk())
