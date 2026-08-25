@@ -43,17 +43,11 @@ class PriceControllerTest {
   }
 
   /**
-   * Test 5: Verifies that no price is returned at 21:00 on June 16th for product 35455 and brand 1.
+   * Test 5: Verifies the price at 21:00 on June 16th for product 35455 and brand 1.
    */
   @Test
   void test5() throws Exception {
-    mockMvc
-        .perform(
-            get("/api/v1/prices/retrievePrices")
-                .param("applicationDate", "2020-06-16T21:00:00")
-                .param("productId", "35455")
-                .param("brandId", "1"))
-        .andExpect(status().isNoContent());
+    assertPrice("2020-06-16T21:00:00", 4, 38.95);
   }
 
   /** Performs the request and verifies the returned price payload. */
