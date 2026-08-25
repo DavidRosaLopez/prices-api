@@ -110,5 +110,7 @@ La suite se ejecuta con el perfil `test`.
 
 ## Documentación
 
+La API expone las siguientes interfaces de documentación:
+
 - [Swagger UI](http://localhost:8080/swagger-ui.html)
 - [OpenAPI JSON](http://localhost:8080/v3/api-docs)
