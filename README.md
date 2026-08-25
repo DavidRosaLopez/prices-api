@@ -23,18 +23,20 @@ Y devuelve el precio aplicable con la siguiente información:
 - Java 25
 - Spring Boot 4.1
 - Spring Web
+- Spring Web MVC Test
 - Spring Data JPA
-- Validation
-- H2 en memoria
-- MapStruct
+- Spring Boot Test
 - Springdoc OpenAPI 3
+- H2 Database
+- Lombok
+- MapStruct
 
 ## Perfiles
 
 - `dev`: perfil por defecto. Usa base de datos H2 en memoria, crea el esquema al arrancar y activa la consola H2.
 - `test`: perfil para la suite automatizada. Usa una base de datos H2 aislada para no compartir estado con `dev`.
 
-## Endpoint
+## Endpoints
 
 `GET /api/v1/prices/retrievePrice`
 
@@ -53,7 +55,7 @@ GET /api/v1/prices/retrievePrice?brandId=1&productId=35455&applicationDate=2020-
 ### Contrato de respuesta
 
 - `200 OK`: devuelve la tarifa aplicable.
-- `204 No Content`: no existe tarifa válida para ese instante.
+- `204 No Content`: no existe tarifa válida para la fecha y hora de aplicación.
 - `400 Bad Request`: parámetros ausentes, inválidos o con formato incorrecto.
 - `500 Internal Server Error`: error no controlado.
 
@@ -78,7 +80,6 @@ La entidad principal es `PRICES`, con estos campos:
 - Un precio es aplicable si `applicationDate` está dentro del rango `[START_DATE, END_DATE]`.
 - Si hay varias tarifas válidas con la misma `PRIORITY`, se obtiene el registro más reciente por `CREATION_DATE`.
 - `CREATION_DATE` es único, así que no puede haber dos registros con la misma fecha de creación.
-- Si no se obtiene ningún resultado de la consulta, el servicio responderá con un código de estado `204 No Content` y un cuerpo vacío.
 
 ## Tests
 
