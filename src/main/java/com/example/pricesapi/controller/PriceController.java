@@ -14,12 +14,30 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 
+import com.example.pricesapi.dto.RetrievePriceResponse;
+import com.example.pricesapi.service.PriceService;
+
+import lombok.RequiredArgsConstructor;
+
 /** Controller for managing prices */
 @Tag(name = "Prices API", description = "API for retrieving prices")
 @RestController
 @RequestMapping("/api/v1/prices")
+@RequiredArgsConstructor
 public class PriceController {
 
+  /** Service for managing prices */
+  private final PriceService priceService;
+
+  /**
+   * Retrieve the applicable price for a product, brand and application date.
+   *
+   * @param applicationDate the application date and time
+   * @param productId the product identifier
+   * @param brandId the brand identifier
+   * 
+   * @return the response entity
+   */
   @Operation(summary = "Retrieve the applicable price for a product, brand and application date")
   @ApiResponses({
     @ApiResponse(responseCode = "200", description = "Price found"),
@@ -32,13 +50,16 @@ public class PriceController {
     @ApiResponse(responseCode = "503", description = "Service unavailable"),
     @ApiResponse(responseCode = "504", description = "Gateway timeout")
   })
-  @GetMapping
-  public ResponseEntity<Void> retrievePrices(
+  @GetMapping("/retrievePrices")
+  public ResponseEntity<RetrievePriceResponse> retrievePrices(
       @Parameter(description = "Application date and time", required = true) @RequestParam
           LocalDateTime applicationDate,
       @Parameter(description = "Product identifier", required = true) @RequestParam Long productId,
       @Parameter(description = "Brand identifier", required = true) @RequestParam Long brandId) {
 
-    return ResponseEntity.ok().build();
+    return priceService
+        .retrievePrice(applicationDate, productId, brandId)
+        .map(ResponseEntity::ok)
+        .orElseGet(() -> ResponseEntity.noContent().build());
   }
 }
