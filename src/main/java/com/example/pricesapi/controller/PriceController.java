@@ -40,7 +40,7 @@ public class PriceController {
   @Operation(summary = "Retrieve the applicable price for a product, brand and application date.")
   @ApiSuccessResponse
   @ApiErrorResponses
-  @GetMapping("/retrievePrice")
+  @GetMapping(value = "/retrievePrice", produces = "application/json")
   public ResponseEntity<RetrievePriceResponse> retrievePrice(
       @Parameter(description = "Brand identifier.", example = "1", required = true)
           @RequestParam(name = "brandId")

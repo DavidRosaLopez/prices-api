@@ -15,6 +15,9 @@ import java.lang.annotation.Target;
 @ApiResponse(
     responseCode = "200",
     description = "Success",
-    content = @Content(schema = @Schema(implementation = RetrievePriceResponse.class)))
+    content =
+        @Content(
+            mediaType = "application/json",
+            schema = @Schema(implementation = RetrievePriceResponse.class)))
 @ApiResponse(responseCode = "204", description = "No content", content = @Content)
 public @interface ApiSuccessResponse {}

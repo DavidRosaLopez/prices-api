@@ -18,6 +18,7 @@ import org.springframework.http.ProblemDetail;
     description = "Bad request",
     content =
         @Content(
+            mediaType = "application/json",
             schema = @Schema(implementation = ProblemDetail.class),
             examples = @ExampleObject(value = SwaggerExamples.BAD_REQUEST_ERROR)))
 @ApiResponse(
@@ -25,6 +26,7 @@ import org.springframework.http.ProblemDetail;
     description = "Internal server error",
     content =
         @Content(
+            mediaType = "application/json",
             schema = @Schema(implementation = ProblemDetail.class),
             examples = @ExampleObject(value = SwaggerExamples.INTERNAL_SERVER_ERROR)))
 public @interface ApiErrorResponses {}
