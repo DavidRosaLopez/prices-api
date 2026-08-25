@@ -15,14 +15,21 @@ public interface PriceMapper {
   /** Converts a PriceEntity to a Price DTO. */
   @Mapping(target = "product", source = "productId")
   @Mapping(target = "brand", source = "brandId")
-  @Mapping(target = "amount", expression = "java(new Amount(price.getPrice(), price.getCurrency()))")
+  @Mapping(target = "amount", source = ".")
   Price toPrice(PriceEntity price);
 
-  default Product map(Long productId) {
+  /** Maps a Long to a Product DTO. */
+  default Product toProduct(Long productId) {
     return productId == null ? null : new Product(productId);
   }
 
-  default Brand mapBrand(Long brandId) {
+  /** Maps a Long to a Brand DTO. */
+  default Brand toBrand(Long brandId) {
     return brandId == null ? null : new Brand(brandId);
+  }
+
+  /** Maps a PriceEntity to an Amount DTO. */
+  default Amount mapAmount(PriceEntity price) {
+    return price == null ? null : new Amount(price.getPrice(), price.getCurrency());
   }
 }
