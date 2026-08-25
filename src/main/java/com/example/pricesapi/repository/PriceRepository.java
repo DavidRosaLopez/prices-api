@@ -2,11 +2,8 @@ package com.example.pricesapi.repository;
 
 import com.example.pricesapi.domain.PriceEntity;
 import java.time.LocalDateTime;
-import java.util.List;
-import org.springframework.data.domain.Pageable;
+import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 
 /** Repository for managing prices. */
 public interface PriceRepository extends JpaRepository<PriceEntity, Long> {
@@ -19,18 +16,10 @@ public interface PriceRepository extends JpaRepository<PriceEntity, Long> {
    * @param applicationDate the date and time for which to retrieve the price.
    * @return the highest priority price if present.
    */
-  @Query(
-      """
-              SELECT p
-              FROM PriceEntity p
-              WHERE p.brandId = :brandId
-                AND p.productId = :productId
-                AND :applicationDate BETWEEN p.startDate AND p.endDate
-              ORDER BY p.priority DESC, p.creationDate DESC
-              """)
-  List<PriceEntity> findApplicablePrice(
-      @Param("brandId") Long brandId,
-      @Param("productId") Long productId,
-      @Param("applicationDate") LocalDateTime applicationDate,
-      Pageable pageable);
+  Optional<PriceEntity>
+      findFirstByBrandIdAndProductIdAndStartDateLessThanEqualAndEndDateGreaterThanEqualOrderByPriorityDescCreationDateDesc(
+          Long brandId,
+          Long productId,
+          LocalDateTime startDate,
+          LocalDateTime endDate);
 }

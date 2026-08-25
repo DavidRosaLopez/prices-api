@@ -3,6 +3,7 @@ package com.example.pricesapi.controller;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -108,6 +109,19 @@ class PriceControllerTest {
                 .param("productId", "35455")
                 .param("brandId", "1"))
         .andExpect(status().isBadRequest());
+  }
+
+  /** Test 12: Verifies that the service returns no content when there is no applicable price. */
+  @Test
+  void test12() throws Exception {
+    mockMvc
+        .perform(
+            get("/api/v1/prices/retrievePrice")
+                .param("applicationDate", "2020-06-13T23:59:59")
+                .param("productId", "35455")
+                .param("brandId", "1"))
+        .andExpect(status().isNoContent())
+        .andExpect(content().string(""));
   }
 
   /** Performs the request and verifies the returned price payload. */

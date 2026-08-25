@@ -8,12 +8,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 /** Entity that represents a price. */
 @Entity
 @Table(name = "PRICES")
-@Data
+@Getter
+@Setter
 public class PriceEntity {
 
   /** The price identifier. */

@@ -1,6 +1,7 @@
 package com.example.pricesapi.exception;
 
 import jakarta.validation.ConstraintViolationException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 /** Global exception handler that returns the API error contract. */
+@Slf4j
 @RestControllerAdvice(basePackages = "com.example.pricesapi.controller")
 public class ApiExceptionHandler {
 
@@ -26,7 +28,8 @@ public class ApiExceptionHandler {
 
   /** Handle generic exceptions. */
   @ExceptionHandler(Exception.class)
-  public ResponseEntity<ProblemDetail> handleGeneric() {
+  public ResponseEntity<ProblemDetail> handleGeneric(Exception ex) {
+    log.error("Unhandled exception", ex);
     return toResponse(HttpStatus.INTERNAL_SERVER_ERROR, "Internal Server Error");
   }
 

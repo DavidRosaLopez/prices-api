@@ -6,7 +6,6 @@ import com.example.pricesapi.repository.PriceRepository;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 /** Service for managing prices. */
@@ -31,9 +30,8 @@ public class PriceService {
   public Optional<RetrievePriceResponse> retrievePrice(
       Long brandId, Long productId, LocalDateTime applicationDate) {
     return priceRepository
-        .findApplicablePrice(brandId, productId, applicationDate, PageRequest.of(0, 1))
-        .stream()
-        .findFirst()
+        .findFirstByBrandIdAndProductIdAndStartDateLessThanEqualAndEndDateGreaterThanEqualOrderByPriorityDescCreationDateDesc(
+            brandId, productId, applicationDate, applicationDate)
         .map(priceMapper::toPrice)
         .map(RetrievePriceResponse::new);
   }
