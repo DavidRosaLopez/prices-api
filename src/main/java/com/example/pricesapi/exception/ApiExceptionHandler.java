@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 /** Global exception handler that returns the API error contract. */
-@RestControllerAdvice
+@RestControllerAdvice(basePackages = "com.example.pricesapi.controller")
 public class ApiExceptionHandler {
 
   /** Handle bad request exceptions. */
