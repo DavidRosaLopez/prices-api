@@ -1,6 +1,6 @@
 package com.example.pricesapi.service;
 
-import com.example.pricesapi.dto.RetrievePriceResponse;
+import com.example.pricesapi.dto.response.RetrievePriceResponse;
 import com.example.pricesapi.mapper.PriceMapper;
 import com.example.pricesapi.repository.PriceRepository;
 import java.time.LocalDateTime;

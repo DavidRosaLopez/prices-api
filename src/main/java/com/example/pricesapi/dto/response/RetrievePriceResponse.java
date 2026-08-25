@@ -1,4 +1,6 @@
-package com.example.pricesapi.dto;
+package com.example.pricesapi.dto.response;
+
+import com.example.pricesapi.dto.common.Price;
 
 /**
  * Response wrapper for retrieving price.

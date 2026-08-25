@@ -1,6 +1,6 @@
 package com.example.pricesapi.controller;
 
-import com.example.pricesapi.dto.RetrievePriceResponse;
+import com.example.pricesapi.dto.response.RetrievePriceResponse;
 import com.example.pricesapi.service.PriceService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;

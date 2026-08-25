@@ -1,9 +1,8 @@
 package com.example.pricesapi.mapper;
 
-import org.mapstruct.Mapper;
-
 import com.example.pricesapi.domain.PriceEntity;
-import com.example.pricesapi.dto.Price;
+import com.example.pricesapi.dto.common.Price;
+import org.mapstruct.Mapper;
 
 /** Mapper for converting PriceEntity to Price. */
 @Mapper(componentModel = "spring")

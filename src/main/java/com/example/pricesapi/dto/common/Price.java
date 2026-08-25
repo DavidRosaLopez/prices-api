@@ -1,4 +1,4 @@
-package com.example.pricesapi.dto;
+package com.example.pricesapi.dto.common;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
