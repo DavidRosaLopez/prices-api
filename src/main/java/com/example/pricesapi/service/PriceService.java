@@ -6,6 +6,7 @@ import com.example.pricesapi.repository.PriceRepository;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 /** Service for managing prices */
@@ -22,17 +23,19 @@ public class PriceService {
   /**
    * Retrieves a price for a specific brand and product at a given date and time.
    *
-   * @param applicationDate the date and time for which to retrieve the price.
-   * @param productId the product identifier.
    * @param brandId the brand identifier.
+   * @param productId the product identifier.
+   * @param applicationDate the date and time for which to retrieve the price.
    * @return the response DTO with the applicable price information.
    */
   public Optional<RetrievePriceResponse> retrievePrice(
-      LocalDateTime applicationDate, Long productId, Long brandId) {
+      Long brandId, Long productId, LocalDateTime applicationDate) {
     // Llamada al repositorio para ejecutar la consulta a la base de datos, obtener el
     // precio aplicable segun los parametros de entrada y mapearlo a la respuesta final de la API
     return priceRepository
-        .findApplicablePrice(brandId, productId, applicationDate)
+        .findApplicablePrices(brandId, productId, applicationDate, PageRequest.of(0, 1))
+        .stream()
+        .findFirst()
         .map(priceMapper::toPrice)
         .map(RetrievePriceResponse::new);
   }

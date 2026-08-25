@@ -44,12 +44,12 @@ public class PriceController {
   @ApiResponse(responseCode = "504", description = "Gateway timeout")
   @GetMapping("/retrievePrice")
   public ResponseEntity<RetrievePriceResponse> retrievePrice(
-      @Parameter(description = "Application date and time", required = true) @RequestParam
-          LocalDateTime applicationDate,
+      @Parameter(description = "Brand identifier", required = true) @RequestParam Long brandId,
       @Parameter(description = "Product identifier", required = true) @RequestParam Long productId,
-      @Parameter(description = "Brand identifier", required = true) @RequestParam Long brandId) {
+      @Parameter(description = "Application date and time", required = true) @RequestParam
+          LocalDateTime applicationDate) {
     return priceService
-        .retrievePrice(applicationDate, productId, brandId)
+        .retrievePrice(brandId, productId, applicationDate)
         .map(ResponseEntity::ok)
         .orElseGet(() -> ResponseEntity.noContent().build());
   }

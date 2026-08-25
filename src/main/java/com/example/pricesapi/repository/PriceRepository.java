@@ -2,10 +2,11 @@ package com.example.pricesapi.repository;
 
 import com.example.pricesapi.domain.PriceEntity;
 import java.time.LocalDateTime;
-import java.util.Optional;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.data.domain.Pageable;
 
 /** Repository for managing prices */
 public interface PriceRepository extends JpaRepository<PriceEntity, Long> {
@@ -26,10 +27,11 @@ public interface PriceRepository extends JpaRepository<PriceEntity, Long> {
               WHERE p.brandId = :brandId
                 AND p.productId = :productId
                 AND :applicationDate BETWEEN p.startDate AND p.endDate
-              ORDER BY p.priority DESC
+              ORDER BY p.priority DESC, p.startDate DESC, p.id DESC
               """)
-  Optional<PriceEntity> findApplicablePrice(
+  List<PriceEntity> findApplicablePrices(
       @Param("brandId") Long brandId,
       @Param("productId") Long productId,
-      @Param("applicationDate") LocalDateTime applicationDate);
+      @Param("applicationDate") LocalDateTime applicationDate,
+      Pageable pageable);
 }
