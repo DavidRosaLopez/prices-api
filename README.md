@@ -59,6 +59,7 @@ La entidad principal es `PRICES`, con estos campos:
 - `PRIORITY`
 - `PRICE`
 - `CURR`
+- `CREATION_DATE`
 
 ## Reglas de negocio
 
