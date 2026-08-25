@@ -29,6 +29,11 @@ Y devuelve el precio aplicable con la siguiente información:
 - MapStruct
 - Springdoc OpenAPI
 
+## Perfiles
+
+- `dev`: perfil por defecto. Usa base de datos H2 en memoria, crea el esquema al arrancar y activa la consola H2.
+- `test`: perfil para la suite automatizada. Usa una base de datos H2 aislada para no compartir estado con `dev`.
+
 ## Endpoint
 
 `GET /api/v1/prices/retrievePrice`
@@ -44,6 +49,13 @@ Y devuelve el precio aplicable con la siguiente información:
 ```http
 GET /api/v1/prices/retrievePrice?applicationDate=2020-06-14T16:00:00&productId=35455&brandId=1
 ```
+
+### Contrato de respuesta
+
+- `200 OK`: devuelve la tarifa aplicable.
+- `204 No Content`: no existe tarifa válida para ese instante.
+- `400 Bad Request`: parámetros ausentes, inválidos o con formato incorrecto.
+- `500 Internal Server Error`: error no controlado.
 
 ## Datos de ejemplo
 
@@ -91,3 +103,5 @@ Tests adicionales de validación de errores:
 - Test 9: Petición con parámetros nulos.
 - Test 10: Petición con parámetros fuera de rango.
 - Test 11: Petición con parámetros con formato inválido.
+
+La suite se ejecuta con el perfil `test`.

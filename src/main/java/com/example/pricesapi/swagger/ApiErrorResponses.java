@@ -22,28 +22,6 @@ import org.springframework.http.ProblemDetail;
             examples =
                 @ExampleObject(name = "Bad request", value = SwaggerExamples.BAD_REQUEST_ERROR)))
 @ApiResponse(
-    responseCode = "401",
-    description = "Unauthorized",
-    content =
-        @Content(
-            schema = @Schema(implementation = ProblemDetail.class),
-            examples =
-                @ExampleObject(name = "Unauthorized", value = SwaggerExamples.UNAUTHORIZED_ERROR)))
-@ApiResponse(
-    responseCode = "403",
-    description = "Forbidden",
-    content =
-        @Content(
-            schema = @Schema(implementation = ProblemDetail.class),
-            examples = @ExampleObject(name = "Forbidden", value = SwaggerExamples.FORBIDDEN_ERROR)))
-@ApiResponse(
-    responseCode = "404",
-    description = "Not found",
-    content =
-        @Content(
-            schema = @Schema(implementation = ProblemDetail.class),
-            examples = @ExampleObject(name = "Not found", value = SwaggerExamples.NOT_FOUND_ERROR)))
-@ApiResponse(
     responseCode = "500",
     description = "Internal server error",
     content =
@@ -53,24 +31,4 @@ import org.springframework.http.ProblemDetail;
                 @ExampleObject(
                     name = "Internal server error",
                     value = SwaggerExamples.INTERNAL_SERVER_ERROR)))
-@ApiResponse(
-    responseCode = "503",
-    description = "Service unavailable",
-    content =
-        @Content(
-            schema = @Schema(implementation = ProblemDetail.class),
-            examples =
-                @ExampleObject(
-                    name = "Service unavailable",
-                    value = SwaggerExamples.SERVICE_UNAVAILABLE_ERROR)))
-@ApiResponse(
-    responseCode = "504",
-    description = "Gateway timeout",
-    content =
-        @Content(
-            schema = @Schema(implementation = ProblemDetail.class),
-            examples =
-                @ExampleObject(
-                    name = "Gateway timeout",
-                    value = SwaggerExamples.GATEWAY_TIMEOUT_ERROR)))
 public @interface ApiErrorResponses {}
