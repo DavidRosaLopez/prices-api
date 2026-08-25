@@ -54,7 +54,7 @@ public class PriceController {
           @RequestParam(name = "applicationDate")
           @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
           LocalDateTime applicationDate) {
-    // Llamada al metodo del servicio para obtener el precio aplicable
+    // Llamada al metodo del servicio para obtener el precio aplicable.
     return priceService
         .retrievePrice(brandId, productId, applicationDate)
         .map(ResponseEntity::ok)
