@@ -9,15 +9,15 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
-/** Common Swagger response for successful responses. */
+/** Common Swagger responses for success cases. */
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @ApiResponse(
     responseCode = "200",
-    description = "Success",
+    description = "OK.",
     content =
         @Content(
             mediaType = "application/json",
             schema = @Schema(implementation = RetrievePriceResponse.class)))
-@ApiResponse(responseCode = "204", description = "No content", content = @Content)
-public @interface ApiSuccessResponse {}
+@ApiResponse(responseCode = "204", description = "No Content.", content = @Content)
+public @interface ApiSuccessResponses {}

@@ -3,7 +3,7 @@ package com.example.pricesapi.controller;
 import com.example.pricesapi.dto.response.RetrievePriceResponse;
 import com.example.pricesapi.service.PriceService;
 import com.example.pricesapi.swagger.ApiErrorResponses;
-import com.example.pricesapi.swagger.ApiSuccessResponse;
+import com.example.pricesapi.swagger.ApiSuccessResponses;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -38,7 +38,7 @@ public class PriceController {
    * @return the response entity.
    */
   @Operation(summary = "Retrieve the applicable price for a product, brand and application date.")
-  @ApiSuccessResponse
+  @ApiSuccessResponses
   @ApiErrorResponses
   @GetMapping(value = "/retrievePrice", produces = "application/json")
   public ResponseEntity<RetrievePriceResponse> retrievePrice(

@@ -10,12 +10,12 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import org.springframework.http.ProblemDetail;
 
-/** Common Swagger responses for API errors. */
+/** Common Swagger responses for errors cases. */
 @Target({ElementType.METHOD, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @ApiResponse(
     responseCode = "400",
-    description = "Bad request",
+    description = "Bad Request",
     content =
         @Content(
             mediaType = "application/json",
@@ -23,7 +23,7 @@ import org.springframework.http.ProblemDetail;
             examples = @ExampleObject(value = SwaggerExamples.BAD_REQUEST_ERROR)))
 @ApiResponse(
     responseCode = "500",
-    description = "Internal server error",
+    description = "Internal Server Error",
     content =
         @Content(
             mediaType = "application/json",
