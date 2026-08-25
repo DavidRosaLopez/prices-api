@@ -1,22 +1,21 @@
 package com.example.pricesapi.dto.common;
 
-import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
- * Price data returned by the API.
+ * Record that represents a price.
  *
- * @param productId the product identifier
- * @param brandId the brand identifier
+ * @param product the product information
+ * @param brand the brand information
  * @param priceList the price list identifier
  * @param startDate the start date
  * @param endDate the end date
- * @param price the final price
+ * @param amount the amount information
  */
 public record Price(
-    Long productId,
-    Long brandId,
+    Product product,
+    Brand brand,
     Integer priceList,
     LocalDateTime startDate,
     LocalDateTime endDate,
-    BigDecimal price) {}
+    Amount amount) {}

@@ -58,9 +58,10 @@ class PriceControllerTest {
                 .param("productId", "35455")
                 .param("brandId", "1"))
         .andExpect(status().isOk())
-        .andExpect(jsonPath("$.price.productId").value(35455))
-        .andExpect(jsonPath("$.price.brandId").value(1))
+        .andExpect(jsonPath("$.price.product.productId").value(35455))
+        .andExpect(jsonPath("$.price.brand.brandId").value(1))
         .andExpect(jsonPath("$.price.priceList").value(expectedPriceList))
-        .andExpect(jsonPath("$.price.price").value(expectedPrice));
+        .andExpect(jsonPath("$.price.amount.value").value(expectedPrice))
+        .andExpect(jsonPath("$.price.amount.currency").value("EUR"));
   }
 }
