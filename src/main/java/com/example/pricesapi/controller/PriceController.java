@@ -34,7 +34,6 @@ public class PriceController {
    */
   @Operation(summary = "Retrieve the applicable price for a product, brand and application date")
   @ApiResponse(responseCode = "200", description = "Success")
-  @ApiResponse(responseCode = "204", description = "No content")
   @ApiResponse(responseCode = "400", description = "Bad request")
   @ApiResponse(responseCode = "401", description = "Unauthorized")
   @ApiResponse(responseCode = "403", description = "Forbidden")
@@ -48,9 +47,6 @@ public class PriceController {
       @Parameter(description = "Product identifier", required = true) @RequestParam Long productId,
       @Parameter(description = "Application date and time", required = true) @RequestParam
           LocalDateTime applicationDate) {
-    return priceService
-        .retrievePrice(brandId, productId, applicationDate)
-        .map(ResponseEntity::ok)
-        .orElseGet(() -> ResponseEntity.noContent().build());
+    return ResponseEntity.ok(priceService.retrievePrice(brandId, productId, applicationDate));
   }
 }
