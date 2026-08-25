@@ -42,9 +42,7 @@ class PriceControllerTest {
     assertPrice("2020-06-15T10:00:00", 3, 30.50);
   }
 
-  /**
-   * Test 5: Verifies the price at 21:00 on June 16th for product 35455 and brand 1.
-   */
+  /** Test 5: Verifies the price at 21:00 on June 16th for product 35455 and brand 1. */
   @Test
   void test5() throws Exception {
     assertPrice("2020-06-16T21:00:00", 4, 38.95);
