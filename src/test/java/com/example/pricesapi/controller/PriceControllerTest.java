@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 
 /** Controller for managing prices. */
@@ -51,12 +50,6 @@ class PriceControllerTest {
 
   /** Verifies that if two prices have the same priority, the most recent one wins. */
   @Test
-  @Sql(
-      statements =
-          """
-          INSERT INTO PRICES (BRAND_ID, PRODUCT_ID, PRICE_LIST, START_DATE, END_DATE, PRIORITY, PRICE, CURR, CREATION_DATE)
-          VALUES (1, 35455, 5, TIMESTAMP '2020-06-15 10:30:00', TIMESTAMP '2020-06-15 10:45:00', 1, 31.00, 'EUR', TIMESTAMP '2020-06-13 14:00:00')
-          """)
   void test6() throws Exception {
     assertPrice("2020-06-15T10:40:00", 5, 31.00);
   }
