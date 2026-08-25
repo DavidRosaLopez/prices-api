@@ -52,4 +52,8 @@ public class PriceEntity {
   /** The currency. */
   @Column(name = "CURR", nullable = false, length = 3)
   private String currency;
+
+  /** The creation date. */
+  @Column(name = "CREATION_DATE", nullable = false)
+  private LocalDateTime creationDate;
 }

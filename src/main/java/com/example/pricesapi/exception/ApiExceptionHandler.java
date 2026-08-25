@@ -1,7 +1,6 @@
 package com.example.pricesapi.exception;
 
 import jakarta.validation.ConstraintViolationException;
-import java.util.NoSuchElementException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
@@ -23,12 +22,6 @@ public class ApiExceptionHandler {
   })
   public ResponseEntity<ProblemDetail> handleBadRequest() {
     return toResponse(HttpStatus.BAD_REQUEST, "Invalid request parameters");
-  }
-
-  /** Handle not found exceptions. */
-  @ExceptionHandler(NoSuchElementException.class)
-  public ResponseEntity<ProblemDetail> handleNotFound() {
-    return toResponse(HttpStatus.NOT_FOUND, "Not found");
   }
 
   /** Handle generic exceptions. */
