@@ -70,10 +70,24 @@ La entidad principal es `PRICES`, con estos campos:
 
 ## Tests
 
-La suite de tests del controlador valida los 5 casos pedidos en el enunciado:
+La suite de tests del controlador valida estos casos:
+
+Casos del enunciado:
 
 - Test 1: Petición a las 10:00 del día 14 del producto 35455 para la brand 1 (ZARA).
 - Test 2: Petición a las 16:00 del día 14 del producto 35455 para la brand 1 (ZARA).
 - Test 3: Petición a las 21:00 del día 14 del producto 35455 para la brand 1 (ZARA).
 - Test 4: Petición a las 10:00 del día 15 del producto 35455 para la brand 1 (ZARA).
 - Test 5: Petición a las 21:00 del día 16 del producto 35455 para la brand 1 (ZARA).
+
+Test adicional de regla de negocio:
+
+- Test 6: Verifica que, si dos tarifas tienen la misma prioridad, gana la más reciente por `CREATION_DATE`.
+
+Tests adicionales de validación de errores:
+
+- Test 7: Petición con parámetros inválidos.
+- Test 8: Petición sin parámetros.
+- Test 9: Petición con parámetros nulos.
+- Test 10: Petición con parámetros fuera de rango.
+- Test 11: Petición con parámetros con formato inválido.

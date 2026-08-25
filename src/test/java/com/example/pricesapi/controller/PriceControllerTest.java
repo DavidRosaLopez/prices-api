@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.web.servlet.MockMvc;
 
 /** Controller for managing prices. */
@@ -46,6 +47,72 @@ class PriceControllerTest {
   @Test
   void test5() throws Exception {
     assertPrice("2020-06-16T21:00:00", 4, 38.95);
+  }
+
+  /** Verifies that if two prices have the same priority, the most recent one wins. */
+  @Test
+  @Sql(
+      statements =
+          """
+          INSERT INTO PRICES (BRAND_ID, PRODUCT_ID, PRICE_LIST, START_DATE, END_DATE, PRIORITY, PRICE, CURR, CREATION_DATE)
+          VALUES (1, 35455, 5, TIMESTAMP '2020-06-15 10:30:00', TIMESTAMP '2020-06-15 10:45:00', 1, 31.00, 'EUR', TIMESTAMP '2020-06-13 14:00:00')
+          """)
+  void test6() throws Exception {
+    assertPrice("2020-06-15T10:40:00", 5, 31.00);
+  }
+
+  /** Verifies the service rejects malformed parameters. */
+  @Test
+  void test7() throws Exception {
+    mockMvc
+        .perform(
+            get("/api/v1/prices/retrievePrice")
+                .param("applicationDate", "bad-date")
+                .param("productId", "abc")
+                .param("brandId", "-1"))
+        .andExpect(status().isBadRequest());
+  }
+
+  /** Verifies the service rejects requests without parameters. */
+  @Test
+  void test8() throws Exception {
+    mockMvc.perform(get("/api/v1/prices/retrievePrice")).andExpect(status().isBadRequest());
+  }
+
+  /** Verifies the service rejects null-like parameters. */
+  @Test
+  void test9() throws Exception {
+    mockMvc
+        .perform(
+            get("/api/v1/prices/retrievePrice")
+                .param("applicationDate", "null")
+                .param("productId", "null")
+                .param("brandId", "null"))
+        .andExpect(status().isBadRequest());
+  }
+
+  /** Verifies the service rejects out-of-range parameters. */
+  @Test
+  void test10() throws Exception {
+    mockMvc
+        .perform(
+            get("/api/v1/prices/retrievePrice")
+                .param("applicationDate", "2020-06-15T10:00:00")
+                .param("productId", "0")
+                .param("brandId", "0"))
+        .andExpect(status().isBadRequest());
+  }
+
+  /** Verifies the service rejects another malformed request. */
+  @Test
+  void test11() throws Exception {
+    mockMvc
+        .perform(
+            get("/api/v1/prices/retrievePrice")
+                .param("applicationDate", "2020/06/15 10:00:00")
+                .param("productId", "35455")
+                .param("brandId", "1"))
+        .andExpect(status().isBadRequest());
   }
 
   /** Performs the request and verifies the returned price payload. */
