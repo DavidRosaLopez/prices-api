@@ -19,16 +19,12 @@ import org.springframework.http.ProblemDetail;
     content =
         @Content(
             schema = @Schema(implementation = ProblemDetail.class),
-            examples =
-                @ExampleObject(name = "Bad request", value = SwaggerExamples.BAD_REQUEST_ERROR)))
+            examples = @ExampleObject(value = SwaggerExamples.BAD_REQUEST_ERROR)))
 @ApiResponse(
     responseCode = "500",
     description = "Internal server error",
     content =
         @Content(
             schema = @Schema(implementation = ProblemDetail.class),
-            examples =
-                @ExampleObject(
-                    name = "Internal server error",
-                    value = SwaggerExamples.INTERNAL_SERVER_ERROR)))
+            examples = @ExampleObject(value = SwaggerExamples.INTERNAL_SERVER_ERROR)))
 public @interface ApiErrorResponses {}
