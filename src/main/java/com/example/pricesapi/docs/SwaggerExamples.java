@@ -8,7 +8,7 @@ public final class SwaggerExamples {
 
   /** The bad request error example. */
   public static final String BAD_REQUEST_ERROR =
-      "{\"code\":\"400\",\"description\":\"Invalid request parameter\"}";
+      "{\"code\":\"400\",\"description\":\"Invalid request parameters\"}";
 
   /** The unauthorized error example. */
   public static final String UNAUTHORIZED_ERROR =

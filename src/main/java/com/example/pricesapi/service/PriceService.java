@@ -4,6 +4,7 @@ import com.example.pricesapi.dto.response.RetrievePriceResponse;
 import com.example.pricesapi.mapper.PriceMapper;
 import com.example.pricesapi.repository.PriceRepository;
 import java.time.LocalDateTime;
+import java.util.Optional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
@@ -27,18 +28,13 @@ public class PriceService {
    * @param applicationDate the date and time for which to retrieve the price.
    * @return the response with the applicable price information.
    */
-  public RetrievePriceResponse retrievePrice(
+  public Optional<RetrievePriceResponse> retrievePrice(
       Long brandId, Long productId, LocalDateTime applicationDate) {
-    // Llamada al metodo del repositorio para recuperar el precio aplicable
     return priceRepository
         .findApplicablePrice(brandId, productId, applicationDate, PageRequest.of(0, 1))
         .stream()
         .findFirst()
-        // Mapeo para convertir la entidad a DTO
         .map(priceMapper::toPrice)
-        // Envoltura del resultado en el objeto wrapper RetrievePriceResponse
-        .map(RetrievePriceResponse::new)
-        // Manejo del caso en que no se encuentre ningun resultado
-        .orElseThrow();
+        .map(RetrievePriceResponse::new);
   }
 }

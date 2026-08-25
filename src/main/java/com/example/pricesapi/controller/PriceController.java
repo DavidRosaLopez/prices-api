@@ -7,9 +7,12 @@ import com.example.pricesapi.service.PriceService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.constraints.Positive;
 import java.time.LocalDateTime;
 import lombok.RequiredArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 /** Controller for managing prices */
 @Tag(name = "Prices API", description = "API for retrieving prices")
 @RestController
+@Validated
 @RequestMapping("/api/v1/prices")
 @RequiredArgsConstructor
 public class PriceController {
@@ -38,11 +42,22 @@ public class PriceController {
   @ApiErrorResponses
   @GetMapping("/retrievePrice")
   public ResponseEntity<RetrievePriceResponse> retrievePrice(
-      @Parameter(description = "Brand identifier", required = true) @RequestParam Long brandId,
-      @Parameter(description = "Product identifier", required = true) @RequestParam Long productId,
-      @Parameter(description = "Application date and time", required = true) @RequestParam
+      @Parameter(description = "Brand identifier", required = true)
+          @RequestParam(name = "brandId")
+          @Positive
+          Long brandId,
+      @Parameter(description = "Product identifier", required = true)
+          @RequestParam(name = "productId")
+          @Positive
+          Long productId,
+      @Parameter(description = "Application date and time", required = true)
+          @RequestParam(name = "applicationDate")
+          @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
           LocalDateTime applicationDate) {
-    // Llamada al metodo del servicio para recuperar el precio aplicable
-    return ResponseEntity.ok(priceService.retrievePrice(brandId, productId, applicationDate));
+    // Llamada al metodo del servicio para obtener el precio aplicable
+    return priceService
+        .retrievePrice(brandId, productId, applicationDate)
+        .map(ResponseEntity::ok)
+        .orElseGet(() -> ResponseEntity.noContent().build());
   }
 }
