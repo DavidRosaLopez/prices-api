@@ -12,7 +12,7 @@ import org.mapstruct.Mapping;
 @Mapper(componentModel = "spring")
 public interface PriceMapper {
 
-  /** Converts a PriceEntity to a Price DTO. */
+  /** Converts a PriceEntity to a Price. */
   @Mapping(target = "product", source = "productId")
   @Mapping(target = "brand", source = "brandId")
   @Mapping(target = "amount", source = ".")

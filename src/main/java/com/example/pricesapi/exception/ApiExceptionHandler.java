@@ -1,8 +1,8 @@
 package com.example.pricesapi.exception;
 
-import com.example.pricesapi.dto.response.ErrorResponse;
+import jakarta.validation.ConstraintViolationException;
 import java.util.NoSuchElementException;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.ProblemDetail;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -17,24 +17,25 @@ public class ApiExceptionHandler {
   @ExceptionHandler({
     MissingServletRequestParameterException.class,
     MethodArgumentTypeMismatchException.class,
+    ConstraintViolationException.class,
     IllegalArgumentException.class
   })
-  public ResponseEntity<ErrorResponse> handleBadRequest(Exception exception) {
-    return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-        .body(new ErrorResponse("400", "Invalid request parameters"));
+  public ResponseEntity<ProblemDetail> handleBadRequest() {
+    ProblemDetail problemDetail = ApiError.BAD_REQUEST.toProblemDetail();
+    return ResponseEntity.status(problemDetail.getStatus()).body(problemDetail);
   }
 
   /** Handle not found exceptions. */
   @ExceptionHandler(NoSuchElementException.class)
-  public ResponseEntity<ErrorResponse> handleNotFound(NoSuchElementException exception) {
-    return ResponseEntity.status(HttpStatus.NOT_FOUND)
-        .body(new ErrorResponse("404", exception.getMessage()));
+  public ResponseEntity<ProblemDetail> handleNotFound() {
+    ProblemDetail problemDetail = ApiError.NOT_FOUND.toProblemDetail();
+    return ResponseEntity.status(problemDetail.getStatus()).body(problemDetail);
   }
 
   /** Handle generic exceptions. */
   @ExceptionHandler(Exception.class)
-  public ResponseEntity<ErrorResponse> handleGeneric(Exception exception) {
-    return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
-        .body(new ErrorResponse("500", exception.getMessage()));
+  public ResponseEntity<ProblemDetail> handleGeneric() {
+    ProblemDetail problemDetail = ApiError.INTERNAL_SERVER_ERROR.toProblemDetail();
+    return ResponseEntity.status(problemDetail.getStatus()).body(problemDetail);
   }
 }
